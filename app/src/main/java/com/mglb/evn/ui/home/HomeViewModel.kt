@@ -15,13 +15,13 @@ class HomeViewModel(
 
 
     fun getAlStaff(){
-        viewModelScope.launch ( Dispatchers.IO ){
+        viewModelScope.launch ( Dispatchers.Main ){
             staffResponseLiveData.postValue(staffRepository.getAllStaff())
 
         }
     }
     fun search(textSearch : String){
-        viewModelScope.launch ( Dispatchers.IO ) {
+        viewModelScope.launch ( Dispatchers.Main) {
             staffResponseLiveData.postValue(staffRepository.searchStaff(textSearch))
 
 

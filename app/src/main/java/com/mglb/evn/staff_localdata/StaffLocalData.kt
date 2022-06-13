@@ -56,7 +56,7 @@ class StaffLocalData {
 
     fun login(email: String, password: String): StaffModel? {
         return realm.where(StaffModel::class.java).contains("email", email)
-            .contains("password", password).findFirstAsync()
+            .contains("password", password).findFirst()
     }
     fun searchStaff(textSearch: String): MutableList<StaffModel> {
         return realm.where(StaffModel::class.java).contains("firstName", textSearch).findAll()

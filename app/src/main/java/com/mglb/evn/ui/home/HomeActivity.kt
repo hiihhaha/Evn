@@ -13,7 +13,7 @@ class HomeActivity : AppCompatActivity() {
     private val viewModel by lazy {
         ViewModelProvider(this)[HomeViewModel::class.java]
     }
-    var homeAdapter : HomeAdapter?=null
+    var homeAdapter: HomeAdapter? = null
     var listStaff = mutableListOf<StaffModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,28 +24,37 @@ class HomeActivity : AppCompatActivity() {
         setUpFeatureSearch()
 
     }
-    private fun setUpRcv(){
-        homeAdapter = HomeAdapter(this,listStaff,::onDeleteStaff,::onEditStaff)
+
+    private fun setUpRcv() {
+        homeAdapter = HomeAdapter(this, listStaff, ::onDeleteStaff, ::onEditStaff)
         rcv_staff.layoutManager = LinearLayoutManager(this)
         rcv_staff.adapter = homeAdapter
     }
-    private fun onDeleteStaff(staffModel: StaffModel){
+
+    private fun onDeleteStaff(staffModel: StaffModel) {
 
 
     }
-    private fun onEditStaff(staffModel: StaffModel){
+
+    private fun onEditStaff(staffModel: StaffModel) {
 
     }
-    private fun setupObsever(){
-        viewModel.staffResponseLiveData.observe(this){
+
+    private fun setupObsever() {
+        viewModel.staffResponseLiveData.observe(this) {
             listStaff.clear()
             listStaff.addAll(it)
             homeAdapter?.notifyDataSetChanged()
         }
     }
-    private fun setUpFeatureSearch(){
+
+    private fun setUpFeatureSearch() {
         edt_Search.doAfterTextChanged {
-            viewModel.search(it.toString())
+            if (it.isNullOrBlank()) {
+                viewModel.getAlStaff()
+            } else {
+                viewModel.search(it.toString())
+            }
         }
     }
 }

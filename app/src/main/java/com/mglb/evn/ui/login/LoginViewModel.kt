@@ -16,7 +16,7 @@ class LoginViewModel(
 
 
     fun login(email: String, password: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Main) {
             staffResponseLiveData.postValue(staffRepository.login(email, password))
         }
     }

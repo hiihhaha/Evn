@@ -1,5 +1,6 @@
 package com.mglb.evn.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class HomeAdapter(
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var staff = listStaff[position]
         var binding = holder.binding
