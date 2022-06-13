@@ -16,6 +16,6 @@ private val staffLocalData : StaffLocalData = StaffLocalData()
         return staffLocalData.getAllStaff()
     }
     fun searchStaff(textSearch : String) : MutableList<StaffModel>{
-        return staffLocalData.seachStaff(textSearch)
+        return staffLocalData.searchStaff(textSearch)
     }
 }

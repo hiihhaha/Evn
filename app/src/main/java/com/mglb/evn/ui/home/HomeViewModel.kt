@@ -1,4 +1,4 @@
-package com.mglb.evn.ui.searchstaff
+package com.mglb.evn.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

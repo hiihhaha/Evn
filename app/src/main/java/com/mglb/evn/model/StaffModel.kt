@@ -2,11 +2,12 @@ package com.mglb.evn.model
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
+import io.realm.annotations.Required
 import java.util.*
 
-class StaffModel(
+open class StaffModel(
     @PrimaryKey
-    var id : Int = 0,
+    var id : Int? = null,
     var firstName : String? =null,
     var lastName : String? = null,
     var email : String? = null,

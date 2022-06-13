@@ -1,4 +1,4 @@
-package com.mglb.evn.ui.searchstaff
+package com.mglb.evn.ui.home
 
 import android.content.Context
 import android.view.LayoutInflater

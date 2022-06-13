@@ -1,27 +1,33 @@
 package com.mglb.evn.staff_localdata
-
 import com.mglb.evn.model.StaffModel
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import io.realm.RealmResults
 import io.realm.kotlin.where
 
 class StaffLocalData {
-    val config = RealmConfiguration.Builder()
+    private val config = RealmConfiguration.Builder()
         .allowQueriesOnUiThread(true)
         .allowWritesOnUiThread(true)
         .build()
-    val realm: Realm = Realm.getInstance(config)
+    var realm: Realm = Realm.getInstance(config)
 
-     fun getAllStaff(): MutableList<StaffModel> {
+
+
+    fun getAllStaff(): MutableList<StaffModel> {
         // you can also filter a collection
         val listStaff: List<StaffModel> = realm.where(StaffModel::class.java).findAll()
         return listStaff.toMutableList()
     }
 
      fun createStaff(staffModel: StaffModel) {
-        realm.executeTransaction { transactionRealm ->
-            transactionRealm.insert(staffModel)
-        }
+         realm.beginTransaction()
+         try {
+             realm.copyToRealmOrUpdate(staffModel)
+         }catch (e:Exception){
+             e.printStackTrace()
+         }
+         realm.commitTransaction()
     }
 
      fun deleteStaff(staffModel: StaffModel) {
@@ -48,14 +54,12 @@ class StaffLocalData {
         }
     }
 
-     fun login(email: String, password: String): StaffModel? {
-        val staff = realm.where(StaffModel::class.java).contains("email",email)
-            .contains("password",password).findFirst()
-        return staff
+    fun login(email: String, password: String): StaffModel? {
+        return realm.where(StaffModel::class.java).contains("email", email)
+            .contains("password", password).findFirstAsync()
     }
-    fun seachStaff(textSearch : String) : MutableList<StaffModel>{
-        val listStaff = realm.where(StaffModel::class.java).contains("firstName",textSearch).findAll()
-        return listStaff
+    fun searchStaff(textSearch: String): MutableList<StaffModel> {
+        return realm.where(StaffModel::class.java).contains("firstName", textSearch).findAll()
     }
 }
 

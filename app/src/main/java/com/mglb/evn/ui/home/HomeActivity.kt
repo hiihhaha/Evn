@@ -1,4 +1,4 @@
-package com.mglb.evn.ui.searchstaff
+package com.mglb.evn.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mglb.evn.R
 import com.mglb.evn.model.StaffModel
-import com.mglb.evn.ui.login.LoginViewModel
 import kotlinx.android.synthetic.main.activity_search_activity.*
 
 class HomeActivity : AppCompatActivity() {

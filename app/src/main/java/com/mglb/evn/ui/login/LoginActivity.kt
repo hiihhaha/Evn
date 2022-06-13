@@ -13,7 +13,9 @@ import com.mglb.evn.model.ROLE_ADMIN
 import com.mglb.evn.model.StaffModel
 import com.mglb.evn.model.StaffRole
 import com.mglb.evn.repository.StaffRepository
-import com.mglb.evn.ui.searchstaff.HomeActivity
+import com.mglb.evn.ui.home.HomeActivity
+import io.realm.Realm.init
+import io.realm.gradle.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 
 class LoginActivity : AppCompatActivity() {
@@ -45,9 +47,12 @@ class LoginActivity : AppCompatActivity() {
             if(isShowPassword){
                 edt_Password.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 img_eye.setImageResource(R.drawable.ic_baseline_remove_red_eye_24)
+
+
             } else{
                 edt_Password.transformationMethod = PasswordTransformationMethod.getInstance()
                 img_eye.setImageResource(R.drawable.ic_baseline_remove_red_eye_24)
+
             }
             isShowPassword =! isShowPassword
         }
