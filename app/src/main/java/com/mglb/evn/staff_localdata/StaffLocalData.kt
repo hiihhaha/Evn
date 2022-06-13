@@ -61,5 +61,6 @@ class StaffLocalData {
     fun searchStaff(textSearch: String): MutableList<StaffModel> {
         return realm.where(StaffModel::class.java).contains("firstName", textSearch).findAll()
     }
+
 }
 

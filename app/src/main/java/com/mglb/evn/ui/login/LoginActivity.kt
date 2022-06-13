@@ -14,9 +14,7 @@ import com.mglb.evn.model.StaffModel
 import com.mglb.evn.model.StaffRole
 import com.mglb.evn.repository.StaffRepository
 import com.mglb.evn.ui.home.HomeActivity
-import io.realm.Realm.init
-import io.realm.gradle.Realm
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -28,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
     var isShowPassword : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
         //createAdmin()
         setUpObserver()
         btn_login.setOnClickListener {
@@ -75,6 +73,7 @@ class LoginActivity : AppCompatActivity() {
             if (it != null) {
                 Toast.makeText(this, "Login success", Toast.LENGTH_LONG).show()
                 var intent = Intent(this,HomeActivity::class.java)
+                intent.putExtra("data",it)
                 startActivity(intent)
                 finish()
             }
